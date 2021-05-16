@@ -24,3 +24,6 @@ const updateEmployee = function(param, values){
         }
     })
 }
+
+
+module.exports = {deleteEmployee, updateEmployee}

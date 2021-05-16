@@ -17,3 +17,5 @@ const serializeEmployees = function(){
     }
     return response
 }
+
+module.exports = {findEmployeeBy, serializeEmployees}

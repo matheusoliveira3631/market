@@ -1,5 +1,4 @@
 const mongoose=require('mongoose')
-const { model } = require('../../../../expressapp/models/monke')
 const schema=mongoose.Schema
 
 const employeeSchema=new schema({
