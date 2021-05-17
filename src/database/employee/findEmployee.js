@@ -10,7 +10,7 @@ const findEmployeeBy = async function(param, value){
     return response
 }
 
-const serializeEmployees = function(){
+const serializeEmployee = async function(){
     const response=[]
     for await (const doc of employee.find({})){
         response.push(doc)
@@ -18,4 +18,4 @@ const serializeEmployees = function(){
     return response
 }
 
-module.exports = {findEmployeeBy, serializeEmployees}
+module.exports = {findEmployeeBy, serializeEmployee}
