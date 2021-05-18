@@ -10,7 +10,7 @@ const findProductBy = async function(param, value){
     return response
 }
 
-const serializeProducts = function(){
+const serializeProducts = async function(){
     const response=[]
     for await (const doc of product.find({})){
         response.push(doc)

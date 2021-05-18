@@ -16,10 +16,10 @@ module.exports = class productController {
     createProduct(req, res){
         try{
             createProduct(req.body).then((message)=>{
-                if (msg!='ok'){
+                if (message!='ok'){
                     res.status(500).json({message:message})
                 }else{
-                    res.status(201)
+                    res.status(201).json({message:'ok'})
                 }
             })
         }catch(err){
@@ -29,11 +29,11 @@ module.exports = class productController {
 
     updateProduct(req, res){
         try{
-            updateProduct('barcode', {'old':req.params.id, 'new':req.body}).then((message)=>{
-                if (msg!='ok'){
+            updateProduct('barcode', {old:req.params.id, new:req.body}).then((message)=>{
+                if (message!='ok'){
                     res.status(500).json({message:message})
                 }else{
-                    res.status(201)
+                    res.status(200).json({message:'ok'})
                 }
             })
         }catch(err){
@@ -44,10 +44,10 @@ module.exports = class productController {
     deleteProduct(req, res){
         try{
             deleteProduct('barcode', req.params.id).then((message)=>{
-                if (msg!='ok'){
+                if (message!='ok'){
                     res.status(500).json({message:message})
                 }else{
-                    res.status(200)
+                    res.status(200).json({message:'ok'})
                 }
             })
         }catch(err){

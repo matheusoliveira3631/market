@@ -3,26 +3,21 @@ const employee = require('./employee')
 const deleteEmployee = async function(param, value){
     const query={}
     query[param]=value
-    employee.deleteOne(query, (err)=>{
-        if (err){
-            return err
-        }else{
-            return 'ok'
-        }
-    })
-
+    try{
+    employee.deleteOne(query)
+    }catch(err){
+        return err
+    }
 }
 
-const updateEmployee = function(param, values){
+const updateEmployee = async function(param, values){
     const query={}
     query[param]=values['old']
-    employee.updateOne(query, values['new'], (err, ret)=>{
-        if (err){
-            return err
-        }else{
-            return 'ok'
-        }
-    })
+    try{
+    employee.updateOne(query, values['new'])
+    }catch(err){
+        return err
+    }
 }
 
 

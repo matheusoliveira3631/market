@@ -19,7 +19,7 @@ module.exports = class employeeController {
                 if (msg!='ok'){
                     res.status(500).json({message:msg})
                 }else{
-                    res.status(201)
+                    res.status(201).json({message:'ok'})
                 }
             })
         } catch(err){
@@ -33,7 +33,7 @@ module.exports = class employeeController {
                 if (msg!='ok'){
                     res.status(500).json({message:msg})
                 }else{
-                    res.status(200)
+                    res.status(200).json({message:'ok'})
                 }
             })
         }catch(err){
@@ -47,7 +47,7 @@ module.exports = class employeeController {
                 if (msg!='ok'){
                     res.status(500).json({message:msg})
                 }else{
-                    res.status(200)
+                    res.status(200).json({message:'ok'})
                 }
             })
         }catch(err){

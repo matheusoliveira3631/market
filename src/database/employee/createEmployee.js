@@ -1,6 +1,7 @@
 const employee = require('./employee')
 
 const createEmployee = async function({name, surname, id, gender, office, wage, password}){
+    try{
     employee.create({
         name:name,
         surname:surname,
@@ -9,13 +10,10 @@ const createEmployee = async function({name, surname, id, gender, office, wage, 
         office:office,
         wage:wage,
         password:password
-    }, (err, doc)=>{
-        if (err){
-            return err
-        }else{
-            return 'ok'
-        }
     })
+    }catch(err){
+        return err
+    }
 }  
 
 module.exports = createEmployee
