@@ -3,7 +3,7 @@ const {deleteEmployee, updateEmployee} = require('../database/employee/editEmplo
 const {findEmployeeBy, serializeEmployee} = require('../database/employee/findEmployee')
 
 module.exports = class employeeController {
-    serialize(req, res){
+    async serialize(req, res){
         try{
             serializeEmployee().then((employeeList)=>{
                 res.status(200).json(employeeList)
@@ -13,43 +13,28 @@ module.exports = class employeeController {
         }
     }
 
-    createEmployee(req, res){
+    async createEmployee(req, res){
         try{
-            createEmployee(req.body).then((msg)=>{
-                if (msg!='ok'){
-                    res.status(500).json({message:msg})
-                }else{
-                    res.status(201).json({message:'ok'})
-                }
-            })
+            await createEmployee(req.body)
+            res.status(201).json({message:'ok'})
         } catch(err){
             res.status(500).json({message:err})
         }
     }
 
-    updateEmployee(req, res){
+    async updateEmployee(req, res){
         try{
-            updateEmployee('employee_id', {'old':req.params.id, 'new':req.body}).then((msg)=>{
-                if (msg!='ok'){
-                    res.status(500).json({message:msg})
-                }else{
-                    res.status(200).json({message:'ok'})
-                }
-            })
+            await updateEmployee('employee_id', {'old':req.params.id, 'new':req.body})
+            res.status(200).json({message:'ok'})
         }catch(err){
             res.status(500).json({message:err})
         }
     }
 
-    deleteEmployee(req, res){
+    async deleteEmployee(req, res){
         try{
-            deleteEmployee('employee_id', req.params.id).then((msg)=>{
-                if (msg!='ok'){
-                    res.status(500).json({message:msg})
-                }else{
-                    res.status(200).json({message:'ok'})
-                }
-            })
+            await deleteEmployee('employee_id', req.params.id)
+            res.status(200).json({message:'ok'})
         }catch(err){
             res.status(500).json({message:err})
         }

@@ -1,11 +1,13 @@
 const {findProductBy, serializeProducts} = require('../database/product/findProduct')
 
-module.exports = class productsMiddleware{
+module.exports = class productMiddleware{
     async bodyValidation(req, res, next){
         const body = req.body
-        body.name ? {} : res.status(500).json({message:'Name required'})
-        body.price ? {} : res.status(500).json({message:'Price required'})
-        body.barcode ? {} : res.status(500).json({message:'Barcode required'})
+        const emptyFields=[]
+        body.name ? {} : emptyFields.push('Name')
+        body.price ? {} : emptyFields.push('Price')
+        body.barcode ? {} : emptyFields.push('Barcode')
+        emptyFields.length!=0 ? res.status(500).json({message:`Required fields: ${emptyFields}`}) : next()
     }
 
     async idValidation(req, res, next){
