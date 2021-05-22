@@ -25,3 +25,5 @@ app.use('/login', loginRouter)
 app.listen(port, ()=>{
     console.info(`express running at http://localhost:${port}`)
 })
+
+//module.exports = app
