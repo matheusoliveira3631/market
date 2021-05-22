@@ -1,4 +1,5 @@
 const {findEmployeeBy, serializeEmployee} = require('../database/employee/findEmployee')
+const hashPassword = require('../utils/passwords').hashPassword
 
 module.exports = class employeeMiddleware {
     async bodyValidation(req, res, next){
@@ -17,5 +18,15 @@ module.exports = class employeeMiddleware {
     async idValidation(req, res, next){
         const result = await findEmployeeBy('employee_id', req.params.id)
         result.length !=0 ? next() : res.status(500).json({message:"No employee found for given ID"})
+    }
+
+    async passwordValidation(req, res, next){
+        let plainTextPassword = req.body['password'].toString()
+        hashPassword(plainTextPassword, (hash)=>{
+            req.body['password']=hash
+            next()
+        }).catch((err)=>{
+            res.status(500).json({message:err})
+        })
     }
 }

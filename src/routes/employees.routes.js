@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/', employeeController.serialize)
 
-router.post('/', employeeMiddleware.bodyValidation, employeeController.createEmployee)
+router.post('/', employeeMiddleware.bodyValidation, employeeMiddleware.passwordValidation, employeeController.createEmployee)
 
 router.put('/:id', employeeMiddleware.idValidation, employeeMiddleware.bodyValidation ,employeeController.updateEmployee)
 
