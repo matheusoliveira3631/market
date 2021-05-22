@@ -29,6 +29,10 @@ const employeeSchema=new schema({
     password:{
         type:String,
         required:true
+    },
+    admin:{
+        type:Boolean,
+        required:true
     }
 })
 

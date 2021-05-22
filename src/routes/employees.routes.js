@@ -10,7 +10,7 @@ router.get('/', employeeController.serialize)
 
 router.post('/', employeeMiddleware.bodyValidation, employeeMiddleware.passwordValidation, employeeController.createEmployee)
 
-router.put('/:id', employeeMiddleware.idValidation, employeeMiddleware.bodyValidation ,employeeController.updateEmployee)
+router.put('/:id', employeeMiddleware.idValidation, employeeMiddleware.bodyValidation, employeeMiddleware.passwordValidation ,employeeController.updateEmployee)
 
 router.delete('/:id', employeeMiddleware.idValidation ,employeeController.deleteEmployee)
 

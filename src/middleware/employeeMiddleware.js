@@ -16,7 +16,9 @@ module.exports = class employeeMiddleware {
     }
 
     async idValidation(req, res, next){
-        const result = await findEmployeeBy('employee_id', req.params.id)
+        let id = null
+        req.params.id ?  id = req.params.id : id = req.body['employee_id']
+        const result = await findEmployeeBy('employee_id', id)
         result.length !=0 ? next() : res.status(500).json({message:"No employee found for given ID"})
     }
 
